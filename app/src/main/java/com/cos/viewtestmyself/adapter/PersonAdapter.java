@@ -1,6 +1,7 @@
 package com.cos.viewtestmyself.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,10 @@ import java.util.List;
 //2.어댑터 만들기
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHolder> {
 
+    private static final String TAG = "PersonAdapter";
+    private int createCount = 1;
+    private  int bindCount = 1;
+
     //3.컬렉션
     private List<Person> persons = new ArrayList<>();
 
@@ -33,6 +38,8 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHold
     //그림만 그림다. onBindVie~로 리턴해서 바인딩을 해야한다.
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder: 그림 만들어짐 "+createCount);
+        createCount++;
         LayoutInflater layoutInflater =
                 (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -43,6 +50,8 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHold
     // ViewHolder 데이터 갈아끼우는 친구
     @Override
     public void onBindViewHolder(PersonAdapter.MyViewHolder holder, int position) {
+        Log.d(TAG, "onBindViewHolder: 데이터 바인딩 "+bindCount);
+        bindCount++;
         Person person = persons.get(position);
         holder.setItem(person);
     }
