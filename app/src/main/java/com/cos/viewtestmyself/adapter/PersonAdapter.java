@@ -24,6 +24,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHold
     //4.컬렉션 데이터 세팅
     public void addItems(List<Person> persons){
         this.persons = persons;
+        notifyDataSetChanged();
     }
 
 
