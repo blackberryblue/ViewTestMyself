@@ -41,7 +41,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHold
 
 
     public void addItem(Person person) {
-        this.persons = persons;
+        this.persons.add(person);
         notifyDataSetChanged();
         mContext.mRvScroll();
     }

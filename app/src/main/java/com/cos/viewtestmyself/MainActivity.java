@@ -40,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //리사이클러뷰 swipe 기능
+    //floatingActingButton으로 데이터 추가 
    private void initListener() {
         fabAdd.setOnClickListener(v -> {
-            personAdapter.addItem(new Person("이름","0103224"));
+            personAdapter.addItem(new Person("이름New","0103224"));
+            rvPersons.scrollToPosition(personAdapter.getItemCount()-1);
         });
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
