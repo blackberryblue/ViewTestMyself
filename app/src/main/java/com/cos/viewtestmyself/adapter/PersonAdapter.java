@@ -22,10 +22,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHold
 
     private  PersonAdapter personAdapter = this;
     private static final String TAG = "PersonAdapter";
+    // PersonAdapter 생성자에 접근하기 위한 변수 (mContext가 rvPersons를 들고 있다.)
     private MainActivity mContext;
     private int createCount = 1;
     private  int bindCount = 1;
 
+    // PersonAdapter 생성자로 MainActivity를 PersonAdapter 영역에 접근가능하도록 함
     public PersonAdapter(MainActivity mContext) {
         this.mContext = mContext;
     }
@@ -42,7 +44,11 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHold
 
     public void addItem(Person person) {
         this.persons.add(person);
+        //UI다시 그려야할때 필요
         notifyDataSetChanged();
+        // private MainActivity mContext = this;에 의해서 전달가능
+        //mContext.rvPersons.scrollToPosition(getItemCount()-1);로 접근이 되지 않아서(private이기때문에)
+        // MainActicity에서 함수로 접근해야한다.
         mContext.mRvScroll();
     }
 

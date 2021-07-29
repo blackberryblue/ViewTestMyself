@@ -18,6 +18,7 @@ import java.util.List;
 
 // 어댑터와 리사이클러뷰 연결 !!
 public class MainActivity extends AppCompatActivity {
+    //다른 클래스에 메모리 전달
     private MainActivity mContext = this;
     private RecyclerView rvPersons;
     //B1:전역변수 선언
@@ -40,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //리사이클러뷰 swipe 기능
-    //floatingActingButton으로 데이터 추가 
+    //floatingActingButton으로 데이터 추가
    private void initListener() {
         fabAdd.setOnClickListener(v -> {
+            //addItem의 하나의 함수가 모든 책임을 다 가지고 있어야한다.
             personAdapter.addItem(new Person("이름New","0103224"));
-            rvPersons.scrollToPosition(personAdapter.getItemCount()-1);
+
         });
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         //MainActivity가 context이다.
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rvPersons.setLayoutManager(layoutManager);
+        //personAdapter로 매개변수 전달 -> addItem에 rvPersons사용을 위해서 메모리 띄울 수 있음
         personAdapter = new PersonAdapter(mContext);
         rvPersons.setAdapter(personAdapter);
     }
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //PersonAdapter에서 addItem에 함수로 접근하기 위해서 만든 함수
     public void mRvScroll() {
         rvPersons.scrollToPosition(personAdapter.getItemCount()-1);
     }
