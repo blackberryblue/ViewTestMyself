@@ -110,6 +110,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.MyViewHold
 
         private void initListener() {
             // 다른 클래스여서 persons를 찾을 수 없다.
+            // super가 부모에서 변수로 받고 있어서 자식이 사용가능.
             itemView.setOnClickListener(v -> {
                 Log.d(TAG, "onCreateViewHolder: "+getAdapterPosition());
                 int index = getAdapterPosition();
